@@ -1,0 +1,15 @@
+id,nombre,numero,posicion,equipo,altura,edad,estado,eliminado
+1,LeBron_James,6,Alero,USA,2.06,40,activo,si
+2,Kevin_Durant,7,Alero,USA,2.08,36,activo,no
+3,Stephen_Curry,30,Base,USA,1.88,37,activo,no
+4,Devin_Booker,15,Escolta,USA,1.96,28,activo,no
+5,Anthony_Davis,3,Pívot,USA,2.08,32,activo,no
+6,Jayson_Tatum,10,Alero,USA,2.03,27,activo,no
+7,Joel_Embiid,21,Pívot,USA,2.13,31,activo,no
+8,Tyrese_Haliburton,4,Base,USA,1.96,25,activo,no
+9,Anthony_Edwards,5,Escolta,USA,1.93,23,activo,no
+10,Kawhi _Leonard,2,Alero,USA,2.01,33,inactivo,no
+11,Bam_Adebayo,13,Pívot,USA,2.06,27,activo,no
+12,Derrick_White,9,Base,USA,1.93,30,activo,no
+13,Jalen_Brown,15,Alero,USA,1.98,28,inactivo,no
+14,Nikola Jokic,15,Pívot,Serbia,2.11,30,activo,si
