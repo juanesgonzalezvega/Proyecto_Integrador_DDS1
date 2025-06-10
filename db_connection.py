@@ -15,7 +15,6 @@ POSTGRESQL_ADDON_DB = os.getenv('POSTGRESQL_ADDON_DB')
 
 if POSTGRESQL_ADDON_PORT is None:
     raise ValueError("POSTGRESQL_ADDON_PORT environment variable is not set.")
-
 CLEVER_DB = (
     "postgresql+asyncpg://ugkr2rnzriatrv6xkm4w:u5UYoQgusJgMsCeW4VztSfT46YyrG3@"
     "bjt2p0bogn3k5radby1c-postgresql.services.clever-cloud.com:5432/"
