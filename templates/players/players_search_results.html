@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Resultados de Búsqueda - Team USA</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<body>
+
+  {% include 'includes/navbar.html' %}
+
+  <section class="py-5">
+    <div class="container">
+      <h2 class="mb-4">
+        <i class="bi bi-search me-2"></i>
+        Resultados de búsqueda para "<span class="text-primary">{{ query }}</span>"
+      </h2>
+
+      {% if jugadores %}
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover align-middle">
+          <thead class="table-dark">
+            <tr>
+              <th class="text-center">ID</th>
+              <th>Nombre</th>
+              <th class="text-center">Número</th>
+              <th class="text-center">Posición</th>
+              <th class="text-center">Equipo</th>
+              <th class="text-center">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for jugador in jugadores %}
+            <tr>
+              <td class="text-center">{{ jugador.id }}</td>
+              <td>
+                <a href="/players/{{ jugador.id }}" class="text-decoration-none fw-semibold">
+                  {{ jugador.nombre }}
+                </a>
+              </td>
+              <td class="text-center">
+                <span class="badge bg-primary">#{{ jugador.numero }}</span>
+              </td>
+              <td class="text-center">{{ jugador.posicion }}</td>
+              <td class="text-center">{{ jugador.equipo }}</td>
+              <td class="text-center">
+                <a href="/players/{{ jugador.id }}" class="btn btn-sm btn-info me-1" title="Ver">
+                  <i class="bi bi-eye-fill"></i>
+                </a>
+                <a href="/players/{{ jugador.id }}/edit" class="btn btn-sm btn-warning me-1" title="Editar">
+                  <i class="bi bi-pencil-fill"></i>
+                </a>
+                <form method="POST" action="/players/{{ jugador.id }}/delete" class="d-inline delete-form">
+                  <button type="submit" class="btn btn-sm btn-danger" title="Eliminar {{ jugador.nombre }}"
+                          onclick="return confirm('¿Estás seguro de que quieres eliminar a {{ jugador.nombre }}?')">
+                    <i class="bi bi-trash-fill"></i>
+                  </button>
+                </form>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      {% else %}
+      <div class="alert alert-warning mt-4" role="alert">
+        <i class="bi bi-exclamation-circle-fill me-2"></i>
+        No se encontraron jugadores que coincidan con tu búsqueda.
+      </div>
+      {% endif %}
+
+      <div class="mt-4">
+        <a href="/players" class="btn btn-secondary">
+          <i class="bi bi-arrow-left-circle me-1"></i>
+          Volver a la lista de jugadores
+        </a>
+      </div>
+    </div>
+  </section>
+
+  {% include 'includes/footer.html' %}
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

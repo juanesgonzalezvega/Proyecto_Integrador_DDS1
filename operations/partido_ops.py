@@ -5,6 +5,7 @@ from models.partido import PartidoConId
 GAMES_CSV = 'games.csv'
 PARTELIM_CSV = 'partelim.csv'
 
+
 def leer_todos_los_partidos() -> List[PartidoConId]:
     partidos = []
     try:
@@ -34,6 +35,7 @@ def leer_todos_los_partidos() -> List[PartidoConId]:
         raise Exception(f"Error al leer partidos: {e}")
     return partidos
 
+
 def leer_un_partido(id_partido: int) -> Optional[PartidoConId]:
     partidos = leer_todos_los_partidos()
     for partido in partidos:
@@ -41,9 +43,16 @@ def leer_un_partido(id_partido: int) -> Optional[PartidoConId]:
             return partido
     return None
 
-def buscar_partidos_por_oponente(oponente: str) -> List[PartidoConId]:
+
+def buscar_partidos_por_oponente(id_partido: Optional[int] = None, rival: Optional[str] = None) -> List[PartidoConId]:
     partidos = leer_todos_los_partidos()
-    return [partido for partido in partidos if oponente.lower() in partido.rival.lower()]
+    resultados = []
+    for partido in partidos:
+        if (id_partido is not None and partido.id_partido == id_partido) or \
+           (rival is not None and rival.lower() in partido.rival.lower()):
+            resultados.append(partido)
+    return resultados
+
 
 def agregar_partido(partido: PartidoConId) -> PartidoConId:
     partidos = leer_todos_los_partidos()
@@ -58,10 +67,11 @@ def agregar_partido(partido: PartidoConId) -> PartidoConId:
         escritor.writerow([
             partido.id_partido, partido.fecha, partido.fase, partido.rival,
             partido.puntaje_usa, partido.puntaje_rival, partido.jugador_destacado,
-            partido.puntos, partido.rebotes, partido.asistencias, partido.robos,
-            partido.minutos_jugados, partido.estado, partido.eliminado
+            partido.puntos, partido.rebotes, partido.asistencias,
+            partido.robos, partido.minutos_jugados, partido.estado, partido.eliminado
         ])
     return partido
+
 
 def modificar_estado_partido(id_partido: int, estado: str) -> Optional[PartidoConId]:
     partidos = leer_todos_los_partidos()
@@ -70,17 +80,22 @@ def modificar_estado_partido(id_partido: int, estado: str) -> Optional[PartidoCo
             partido.estado = estado
             with open(GAMES_CSV, mode='w', newline='', encoding='utf-8') as archivo:
                 escritor = csv.writer(archivo)
-                escritor.writerow(['id_partido', 'fecha', 'fase', 'rival', 'puntaje_usa', 'puntaje_rival',
-                                   'jugador_destacado', 'puntos', 'rebotes', 'asistencias', 'robos',
-                                   'minutos_jugados', 'estado', 'eliminado'])
+                escritor.writerow([
+                    'id_partido', 'fecha', 'fase', 'rival',
+                    'puntaje_usa', 'puntaje_rival', 'jugador_destacado',
+                    'puntos', 'rebotes', 'asistencias', 'robos',
+                    'minutos_jugados', 'estado', 'eliminado'
+                ])
                 for p in partidos:
                     escritor.writerow([
-                        p.id_partido, p.fecha, p.fase, p.rival, p.puntaje_usa, p.puntaje_rival,
-                        p.jugador_destacado, p.puntos, p.rebotes, p.asistencias, p.robos,
+                        p.id_partido, p.fecha, p.fase, p.rival,
+                        p.puntaje_usa, p.puntaje_rival, p.jugador_destacado,
+                        p.puntos, p.rebotes, p.asistencias, p.robos,
                         p.minutos_jugados, p.estado, p.eliminado
                     ])
             return partido
     return None
+
 
 def modificar_partido(id_partido: int, partido: PartidoConId) -> Optional[PartidoConId]:
     partidos = leer_todos_los_partidos()
@@ -101,9 +116,12 @@ def modificar_partido(id_partido: int, partido: PartidoConId) -> Optional[Partid
             p.eliminado = partido.eliminado
             with open(GAMES_CSV, mode='w', newline='', encoding='utf-8') as archivo:
                 escritor = csv.writer(archivo)
-                escritor.writerow(['id_partido', 'fecha', 'fase', 'rival', 'puntaje_usa', 'puntaje_rival',
-                                   'jugador_destacado', 'puntos', 'rebotes', 'asistencias', 'robos',
-                                   'minutos_jugados', 'estado', 'eliminado'])
+                escritor.writerow([
+                    'id_partido', 'fecha', 'fase', 'rival',
+                    'puntaje_usa', 'puntaje_rival', 'jugador_destacado',
+                    'puntos', 'rebotes', 'asistencias', 'robos',
+                    'minutos_jugados', 'estado', 'eliminado'
+                ])
                 for partido in partidos:
                     escritor.writerow([
                         partido.id_partido, partido.fecha, partido.fase, partido.rival,
@@ -113,6 +131,7 @@ def modificar_partido(id_partido: int, partido: PartidoConId) -> Optional[Partid
                     ])
             return p
     return None
+
 
 def eliminar_partido(id_partido: int) -> Optional[PartidoConId]:
     partidos = leer_todos_los_partidos()
@@ -134,9 +153,12 @@ def eliminar_partido(id_partido: int) -> Optional[PartidoConId]:
             ])
         with open(GAMES_CSV, mode='w', newline='', encoding='utf-8') as archivo:
             escritor = csv.writer(archivo)
-            escritor.writerow(['id_partido', 'fecha', 'fase', 'rival', 'puntaje_usa', 'puntaje_rival',
-                               'jugador_destacado', 'puntos', 'rebotes', 'asistencias', 'robos',
-                               'minutos_jugados', 'estado', 'eliminado'])
+            escritor.writerow([
+                'id_partido', 'fecha', 'fase', 'rival',
+                'puntaje_usa', 'puntaje_rival', 'jugador_destacado',
+                'puntos', 'rebotes', 'asistencias', 'robos',
+                'minutos_jugados', 'estado', 'eliminado'
+            ])
             for partido in partidos:
                 escritor.writerow([
                     partido.id_partido, partido.fecha, partido.fase, partido.rival,
@@ -146,6 +168,7 @@ def eliminar_partido(id_partido: int) -> Optional[PartidoConId]:
                 ])
         return partido_a_eliminar
     return None
+
 
 def obtener_partidos_eliminados() -> List[PartidoConId]:
     partidos = leer_todos_los_partidos()
