@@ -7,4 +7,4 @@ id_partido,fecha,fase,rival,puntaje_usa,puntaje_rival,jugador_destacado,puntos,r
 6,2024-08-10,Final,Francia,98,87,LeBron James,24,10,8,3,35,por_jugar,no
 7,string,string,string,0,0,string,0,0,0,0,0,string,string
 8,2024-07-13,Fase1,a,1,1,a,1,1,1,1,1,por_jugar,no
-9,1222-12-12,Fase122,h,7,7,jj,3,3,3,3,3,jugado,no
+9,1222-12-12,Fase122,h,7,7,jj,3,3,3,3,3,jugado,si

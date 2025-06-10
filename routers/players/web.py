@@ -1,13 +1,11 @@
-from fastapi import APIRouter, Request, Form, HTTPException
-from fastapi.responses import HTMLResponse, RedirectResponse
+from fastapi import APIRouter, Request, Form, HTTPException, Query
 from fastapi.templating import Jinja2Templates
-from typing import Optional
-
+from fastapi.responses import HTMLResponse, RedirectResponse
 import operations.jugador_ops as jugador_ops
 import operations.partido_ops as partido_ops
-
 from models.jugador import JugadorConId
 from models.partido import PartidoConId
+from typing import Optional
 
 router = APIRouter()
 templates = Jinja2Templates(directory="templates")
@@ -31,7 +29,6 @@ async def search_games(request: Request, id_partido: Optional[int] = None, rival
         "partidos": partidos,
         "query": f"id={id_partido} rival={rival}"
     })
-
 
 # ------------------ RUTAS PARA CREAR JUGADOR ------------------
 
@@ -62,7 +59,6 @@ async def create_player(
     )
     nuevo_jugador = jugador_ops.agregar_jugador(jugador)
     return RedirectResponse(url=f"/players/{nuevo_jugador.id}", status_code=303)
-
 
 # ------------------ RUTAS PARA CREAR PARTIDO ------------------
 
@@ -105,7 +101,6 @@ async def create_game(
     )
     nuevo_partido = partido_ops.agregar_partido(partido)
     return RedirectResponse(url=f"/games/{nuevo_partido.id_partido}", status_code=303)
-
 
 # ------------------ RUTAS DINÁMICAS PARA JUGADORES ------------------
 
@@ -156,7 +151,6 @@ async def edit_player(
     if not modificado:
         raise HTTPException(status_code=404, detail="Jugador no encontrado")
     return RedirectResponse(url=f"/players/{id_jugador}", status_code=303)
-
 
 # ------------------ RUTAS DINÁMICAS PARA PARTIDOS ------------------
 
@@ -218,9 +212,24 @@ async def edit_game(
         raise HTTPException(status_code=404, detail="Partido no encontrado")
     return RedirectResponse(url=f"/games/{id_partido}", status_code=303)
 
-
 # ------------------ RUTA ABOUT ------------------
 
 @router.get("/about", response_class=HTMLResponse)
 async def about(request: Request):
     return templates.TemplateResponse("about.html", {"request": request})
+
+# ------------------ RUTAS PARA ELIMINAR ------------------
+
+@router.post("/players/{id_jugador}/delete")
+async def delete_player(id_jugador: int):
+    eliminado = jugador_ops.eliminar_jugador(id_jugador)
+    if not eliminado:
+        raise HTTPException(status_code=404, detail="Jugador no encontrado")
+    return RedirectResponse(url="/players", status_code=303)
+
+@router.post("/games/{id_partido}/delete")
+async def delete_game(id_partido: int):
+    eliminado = partido_ops.eliminar_partido(id_partido)
+    if not eliminado:
+        raise HTTPException(status_code=404, detail="Partido no encontrado")
+    return RedirectResponse(url="/games", status_code=303)
