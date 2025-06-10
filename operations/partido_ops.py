@@ -45,12 +45,17 @@ def leer_un_partido(id_partido: int) -> Optional[PartidoConId]:
 
 
 def buscar_partidos_por_oponente(id_partido: Optional[int] = None, rival: Optional[str] = None) -> List[PartidoConId]:
+    if id_partido is None and (rival is None or rival.strip() == ""):
+        return []
+
     partidos = leer_todos_los_partidos()
     resultados = []
+
     for partido in partidos:
         if (id_partido is not None and partido.id_partido == id_partido) or \
-           (rival is not None and rival.lower() in partido.rival.lower()):
+           (rival is not None and rival.strip() != "" and rival.lower() in partido.rival.lower()):
             resultados.append(partido)
+
     return resultados
 
 

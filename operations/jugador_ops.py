@@ -40,12 +40,17 @@ def leer_un_jugador(id_jugador: int) -> Optional[JugadorConId]:
 
 
 def buscar_jugadores(id: Optional[int] = None, numero: Optional[int] = None) -> List[JugadorConId]:
+    if id is None and numero is None:
+        return []
+
     jugadores = leer_todos_los_jugadores()
     resultados = []
+
     for jugador in jugadores:
         if (id is not None and jugador.id == id) or \
-                (numero is not None and jugador.numero == numero):
+           (numero is not None and jugador.numero == numero):
             resultados.append(jugador)
+
     return resultados
 
 

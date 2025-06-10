@@ -1,18 +1,61 @@
 id,nombre,numero,posicion,equipo,altura,edad,estado,eliminado
 1,LeBron_James,6,Alero,USA,2.06,40,activo,no
-2,Kevin_Durant,7,Alero,USA,2.08,36,activo,no
-3,Stephen_Curry,30,Base,USA,1.88,37,activo,no
-4,Devin_Booker,15,Escolta,USA,1.96,28,activo,no
-5,Anthony_Davis,3,Pívot,USA,2.08,32,activo,no
-6,Jayson_Tatum,10,Alero,USA,2.03,27,activo,no
-7,Joel_Embiid,21,Pívot,USA,2.13,31,activo,no
-8,Tyrese_Haliburton,4,Base,USA,1.96,25,activo,no
-9,Anthony_Edwards,5,Escolta,USA,1.93,23,activo,no
-10,Kawhi _Leonard,2,Alero,USA,2.01,33,inactivo,no
-11,Bam_Adebayo,13,Pívot,USA,2.06,27,activo,no
-12,Derrick_White,9,Base,USA,1.93,30,activo,no
-13,Jalen_Brown,15,Alero,USA,1.98,28,inactivo,si
-14,Nikola Jokic,15,Pívot,Serbia,2.11,30,activo,si
-15,Kevin Garnet,5,Ala-Pívot,USA,2.04,42,activo,si
-16,Jalen Brunson,4,Base,USA,1.85,34,activo,si
-17,Kevin Garnet,6,Base,USA,1.52,18,activo,si
+2,Stephen_Curry,4,Base,USA,1.88,36,activo,no
+3,Kevin_Durant,7,Alero,USA,2.08,35,activo,no
+4,Jayson_Tatum,10,Alero,USA,2.03,26,activo,no
+5,Joel_Embiid,11,Pívot,USA,2.13,30,activo,no
+6,Shai_Gilgeous-Alexander,2,Base,Canada,1.98,25,activo,no
+7,Jamal_Murray,4,Base,Canada,1.93,27,activo,no
+8,Dillon_Brooks,24,Alero,Canada,1.98,28,activo,no
+9,RJ_Barrett,9,Alero,Canada,1.98,24,activo,no
+10,Zach_Edey,15,Pívot,Canada,2.24,22,activo,no
+11,Victor_Wembanyama,1,Pívot,France,2.24,20,activo,no
+12,Rudy_Gobert,27,Pívot,France,2.16,32,activo,no
+13,Evan_Fournier,10,Escolta,France,2.01,31,activo,no
+14,Nicolas_Batum,5,Alero,France,2.03,35,activo,no
+15,Nando_De_Colo,12,Base,France,1.96,37,activo,no
+16,Josh_Giddey,6,Base,Australia,2.03,21,activo,no
+17,Patty_Mills,5,Base,Australia,1.83,35,activo,no
+18,Joe_Ingles,7,Alero,Australia,2.03,36,activo,no
+19,Duop_Reath,26,Pívot,Australia,2.11,27,activo,no
+20,Dante_Exum,11,Base,Australia,1.96,28,activo,no
+21,Dennis_Schroder,17,Base,Alemania,1.85,30,activo,no
+22,Franz_Wagner,22,Alero,Alemania,2.06,23,activo,no
+23,Moritz_Wagner,21,Pívot,Alemania,2.11,27,activo,no
+24,Daniel_Theis,10,Pívot,Alemania,2.06,32,activo,no
+25,Isaac_Bonga,8,Alero,Alemania,2.03,24,activo,no
+26,Giannis_Antetokounmpo,34,Ala-Pívot,Grecia,2.11,29,activo,no
+27,Thanasis_Antetokounmpo,43,Alero,Grecia,2.01,32,activo,no
+28,Kostas_Sloukas,10,Base,Grecia,1.9,34,activo,no
+29,Nick_Calogeros,5,Base,Grecia,1.87,30,activo,no
+30,Ioannis_Papapetrou,11,Alero,Grecia,2.03,30,activo,no
+31,Bruno_Caboclo,50,Ala-Pívot,Brasil,2.06,29,activo,no
+32,Yago_Dos_Santos,2,Base,Brasil,1.78,25,activo,no
+33,Leo_Meinel,6,Alero,Brasil,2.0,29,activo,no
+34,Lucas_Dias,15,Ala-Pívot,Brasil,2.07,29,activo,no
+35,Marcelinho_Huertas,9,Base,Brasil,1.91,41,activo,no
+36,Willy_Hernangomez,14,Pívot,España,2.11,30,activo,no
+37,Juancho_Hernangomez,41,Alero,España,2.06,28,activo,no
+38,Rudy_Fernandez,5,Escolta,España,1.96,39,activo,no
+39,Usman_Garuba,16,Ala-Pívot,España,2.03,22,activo,no
+40,Sergio_Llull,23,Base,España,1.9,36,activo,no
+41,Jose_Alvarado,15,Base,Puerto Rico,1.83,26,activo,no
+42,Tremont_Waters,51,Base,Puerto Rico,1.78,27,activo,no
+43,George_Conditt_IV,4,Pívot,Puerto Rico,2.08,24,activo,no
+44,Ismael_Romero,10,Ala-Pívot,Puerto Rico,2.03,32,activo,no
+45,Chris_Ortiz,13,Alero,Puerto Rico,2.01,31,activo,no
+46,Nikola_Jokic,15,Pívot,Serbia,2.11,29,activo,no
+47,Bogdan_Bogdanovic,7,Escolta,Serbia,1.96,31,activo,no
+48,Aleksa_Avramovic,4,Base,Serbia,1.92,29,activo,no
+49,Nemanja_Bjelica,8,Ala-Pívot,Serbia,2.08,36,activo,no
+50,Filip_Petrusev,3,Pívot,Serbia,2.11,24,activo,no
+51,Yuta_Watanabe,18,Alero,Japon,2.06,29,activo,no
+52,Rui_Hachimura,8,Ala-Pívot,Japon,2.03,26,activo,no
+53,Yuki_Togashi,2,Base,Japon,1.67,30,activo,no
+54,Josh_Hawkinson,32,Pívot,Japon,2.08,29,activo,no
+55,Keisei_Tominaga,30,Escolta,Japon,1.88,23,activo,no
+56,Carlik_Jones,5,Base,Sudan del Sur,1.85,26,activo,no
+57,Wenyen_Gabriel,35,Ala-Pívot,Sudan del Sur,2.06,27,activo,no
+58,Nuni_Omoto,23,Pívot,Sudan del Sur,2.08,29,activo,no
+59,Maring_Deng,11,Base,Sudan del Sur,1.91,25,activo,no
+60,Majok_Deng,21,Alero,Sudan del Sur,2.08,31,activo,no
