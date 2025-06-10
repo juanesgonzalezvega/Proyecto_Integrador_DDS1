@@ -1,9 +1,8 @@
-import datetime
-from pydantic import ConfigDict
-from sqlmodel import SQLModel, Field
 from typing import Optional
+from sqlmodel import SQLModel, Field
+from pydantic import ConfigDict
 
-
+# Modelo base de jugador
 class JugadorBase(SQLModel):
     nombre: str = Field(..., min_length=1, max_length=100)
     numero: int = Field(..., ge=0)
@@ -14,13 +13,12 @@ class JugadorBase(SQLModel):
     estado: str = Field(..., min_length=1, max_length=20)
     eliminado: str = Field(..., min_length=1, max_length=5)
 
-
 class JugadorSQL(JugadorBase, table=True):
     __tablename__ = "jugadores"
     id: Optional[int] = Field(default=None, primary_key=True)
     model_config = ConfigDict(from_attributes=True)
 
-
+# Modelo base de partido
 class PartidoBase(SQLModel):
     fecha: str = Field(..., min_length=1, max_length=20)
     fase: str = Field(..., min_length=1, max_length=50)
@@ -35,7 +33,6 @@ class PartidoBase(SQLModel):
     minutos_jugados: int = Field(..., ge=0)
     estado: str = Field(..., min_length=1, max_length=20)
     eliminado: str = Field(..., min_length=1, max_length=5)
-
 
 class PartidoSQL(PartidoBase, table=True):
     __tablename__ = "partidos"

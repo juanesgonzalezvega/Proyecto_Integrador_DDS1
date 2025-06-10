@@ -1,66 +1,96 @@
-from fastapi import FastAPI, Request, HTTPException
-from fastapi.responses import JSONResponse
-from fastapi.templating import Jinja2Templates
-from routers.players import api, web
-from fastapi.staticfiles import StaticFiles
+import uvicorn
+from fastapi import FastAPI, Depends, HTTPException
+from sqlalchemy.ext.asyncio import AsyncSession
+from typing import List
 
+from db_connection import get_session, init_db
+from sqlmodels_db import JugadorSQL, PartidoSQL
+from operations.jugador_db_ops import (
+    leer_todos_los_jugadores_db,
+    leer_un_jugador_db,
+    agregar_jugador_db,
+    modificar_jugador_db,
+    eliminar_jugador_db,
+)
+from operations.partido_db_ops import (
+    leer_todos_los_partidos_db,
+    leer_un_partido_db,
+    agregar_partido_db,
+    modificar_partido_db,
+    eliminar_partido_db,
+)
 
+app = FastAPI(title="Proyecto Integrador DDS1")
 
+@app.on_event("startup")
+async def on_startup():
+    await init_db()
 
-app = FastAPI()
-templates = Jinja2Templates(directory="templates")
+# ---- Jugadores ----
 
-app.include_router(api.router, prefix="/api", tags=["API"])
-app.include_router(web.router, prefix="", tags=["Web"])
+@app.get("/jugadores")
+async def get_jugadores(session: AsyncSession = Depends(get_session)):
+    # Aquí usas la sesión correctamente
+    jugadores = await leer_todos_los_jugadores_db(session)
+    return jugadores
 
-app.mount("/static", StaticFiles(directory="static"), name="static")
+@app.get("/jugadores/{jugador_id}", response_model=JugadorSQL)
+async def get_jugador(jugador_id: int, session: AsyncSession = Depends(get_session)):
+    jugador = await leer_un_jugador_db(jugador_id, session)
+    if not jugador:
+        raise HTTPException(status_code=404, detail="Jugador no encontrado")
+    return jugador
 
-@app.get("/")
-async def root(request: Request):
-    return templates.TemplateResponse("players/home.html", {"request": request})
+@app.post("/jugadores", response_model=JugadorSQL)
+async def create_jugador(jugador: JugadorSQL, session: AsyncSession = Depends(get_session)):
+    return await agregar_jugador_db(jugador, session)
 
-@app.get("/about")
-async def about(request: Request):
-    return templates.TemplateResponse("about.html", {"request": request})
+@app.put("/jugadores/{jugador_id}", response_model=JugadorSQL)
+async def update_jugador(jugador_id: int, jugador: JugadorSQL, session: AsyncSession = Depends(get_session)):
+    data = jugador.dict(exclude_unset=True)
+    updated = await modificar_jugador_db(jugador_id, data, session)
+    if not updated:
+        raise HTTPException(status_code=404, detail="Jugador no encontrado")
+    return updated
 
-@app.get("/planning")
-async def planning():
-    return {
-        "requirements": [
-            "Interfaz HTML",
-            "Navegación coherente",
-            "Estilo constante",
-            "Formulario con imágenes",
-            "Consultas por ID, nombre o característica",
-            "Consulta total de elementos",
-            "Modificación total y parcial",
-            "Eliminación con historial",
-            "Endpoints informativos"
-        ]
-    }
+@app.delete("/jugadores/{jugador_id}", response_model=JugadorSQL)
+async def delete_jugador(jugador_id: int, session: AsyncSession = Depends(get_session)):
+    eliminado = await eliminar_jugador_db(jugador_id, session)
+    if not eliminado:
+        raise HTTPException(status_code=404, detail="Jugador no encontrado")
+    return eliminado
 
-@app.get("/design")
-async def design():
-    return {
-        "architecture": "Modular con routers, modelos, operaciones y plantillas",
-        "frontend": "Bulma CSS y Jinja2 templates",
-        "backend": "FastAPI con manejo de CSV",
-        "storage": "Archivos CSV para datos"
-    }
+# ---- Partidos ----
 
-@app.get("/objective")
-async def objective():
-    return {
-        "goal": "Crear una aplicación web para gestionar jugadores y partidos del Team USA con interfaz amigable y API REST."
-    }
+@app.get("/partidos", response_model=List[PartidoSQL])
+async def get_partidos(session: AsyncSession = Depends(get_session)):
+    return await leer_todos_los_partidos_db(session)
 
-@app.exception_handler(HTTPException)
-async def http_exception_handler(request: Request, exc: HTTPException):
-    return JSONResponse(
-        status_code=exc.status_code,
-        content={
-            "message": "Error en la solicitud",
-            "detail": exc.detail,
-            "path": request.url.path
-        },
-    )
+@app.get("/partidos/{partido_id}", response_model=PartidoSQL)
+async def get_partido(partido_id: int, session: AsyncSession = Depends(get_session)):
+    partido = await leer_un_partido_db(partido_id, session)
+    if not partido:
+        raise HTTPException(status_code=404, detail="Partido no encontrado")
+    return partido
+
+@app.post("/partidos", response_model=PartidoSQL)
+async def create_partido(partido: PartidoSQL, session: AsyncSession = Depends(get_session)):
+    return await agregar_partido_db(partido, session)
+
+@app.put("/partidos/{partido_id}", response_model=PartidoSQL)
+async def update_partido(partido_id: int, partido: PartidoSQL, session: AsyncSession = Depends(get_session)):
+    data = partido.dict(exclude_unset=True)
+    updated = await modificar_partido_db(partido_id, data, session)
+    if not updated:
+        raise HTTPException(status_code=404, detail="Partido no encontrado")
+    return updated
+
+@app.delete("/partidos/{partido_id}", response_model=PartidoSQL)
+async def delete_partido(partido_id: int, session: AsyncSession = Depends(get_session)):
+    eliminado = await eliminar_partido_db(partido_id, session)
+    if not eliminado:
+        raise HTTPException(status_code=404, detail="Partido no encontrado")
+    return eliminado
+
+if __name__ == "__main__":
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
