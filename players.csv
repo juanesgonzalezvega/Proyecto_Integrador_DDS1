@@ -1,5 +1,5 @@
 id,nombre,numero,posicion,equipo,altura,edad,estado,eliminado
-1,LeBron_James,6,Alero,USA,2.06,40,activo,si
+1,LeBron_James,6,Alero,USA,2.06,40,activo,no
 2,Kevin_Durant,7,Alero,USA,2.08,36,activo,no
 3,Stephen_Curry,30,Base,USA,1.88,37,activo,no
 4,Devin_Booker,15,Escolta,USA,1.96,28,activo,no
@@ -13,3 +13,4 @@ id,nombre,numero,posicion,equipo,altura,edad,estado,eliminado
 12,Derrick_White,9,Base,USA,1.93,30,activo,no
 13,Jalen_Brown,15,Alero,USA,1.98,28,inactivo,no
 14,Nikola Jokic,15,Pívot,Serbia,2.11,30,activo,si
+15,Kevin Garnet,5,Ala-Pívot,USA,2.04,42,activo,no

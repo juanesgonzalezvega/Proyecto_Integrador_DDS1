@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Registrar Partido</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+  {% include 'includes/navbar.html' %}
+
+  <section class="py-5">
+    <div class="container">
+      <h1 class="text-center mb-4">Registrar Nuevo Partido</h1>
+
+      <form action="/games/create" method="post">
+        <div class="mb-3">
+          <label for="fecha" class="form-label">Fecha</label>
+          <input type="date" class="form-control" id="fecha" name="fecha" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="fase" class="form-label">Fase</label>
+          <input type="text" class="form-control" id="fase" name="fase" placeholder="Ejemplo: Fase de grupos" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="rival" class="form-label">Rival</label>
+          <input type="text" class="form-control" id="rival" name="rival" placeholder="Nombre del equipo rival" required>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="puntaje_usa" class="form-label">Puntaje USA</label>
+            <input type="number" class="form-control" id="puntaje_usa" name="puntaje_usa" min="0" required>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="puntaje_rival" class="form-label">Puntaje Rival</label>
+            <input type="number" class="form-control" id="puntaje_rival" name="puntaje_rival" min="0" required>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="jugador_destacado" class="form-label">Jugador Destacado</label>
+          <input type="text" class="form-control" id="jugador_destacado" name="jugador_destacado" required>
+        </div>
+
+        <div class="row">
+          <div class="col-md-3 mb-3">
+            <label for="puntos" class="form-label">Puntos</label>
+            <input type="number" class="form-control" id="puntos" name="puntos" min="0" required>
+          </div>
+          <div class="col-md-3 mb-3">
+            <label for="rebotes" class="form-label">Rebotes</label>
+            <input type="number" class="form-control" id="rebotes" name="rebotes" min="0" required>
+          </div>
+          <div class="col-md-3 mb-3">
+            <label for="asistencias" class="form-label">Asistencias</label>
+            <input type="number" class="form-control" id="asistencias" name="asistencias" min="0" required>
+          </div>
+          <div class="col-md-3 mb-3">
+            <label for="robos" class="form-label">Robos</label>
+            <input type="number" class="form-control" id="robos" name="robos" min="0" required>
+          </div>
+          <div class="col-md-3 mb-3">
+            <label for="minutos_jugados" class="form-label">Minutos Jugados</label>
+            <input type="number" class="form-control" id="minutos_jugados" name="minutos_jugados" min="0" required>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="estado" class="form-label">Estado</label>
+            <select class="form-select" id="estado" name="estado" required>
+              <option value="jugado">Jugado</option>
+              <option value="por_jugar">Por jugar</option>
+            </select>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="eliminado" class="form-label">Eliminado</label>
+            <select class="form-select" id="eliminado" name="eliminado" required>
+              <option value="no">No</option>
+              <option value="si">Sí</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-center mt-4">
+          <button type="submit" class="btn btn-success me-2">Registrar Partido</button>
+          <a href="/games" class="btn btn-secondary">Cancelar</a>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  {% include 'includes/footer.html' %}
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

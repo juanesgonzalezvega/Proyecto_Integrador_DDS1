@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Team USA Basketball</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+  {% include 'includes/navbar.html' %}
+
+  <section class="py-5">
+    <div class="container">
+      <h1 class="text-center display-5 mb-3">Team USA Basketball</h1>
+      <h2 class="text-center h5 mb-4">Gestión de jugadores y partidos</h2>
+
+      <div class="text-center">
+        <p class="mb-3">
+          Bienvenido a la plataforma oficial para la gestión del equipo Team USA de baloncesto.
+          Aquí podrás consultar, agregar, modificar y eliminar información sobre los jugadores y los partidos.
+        </p>
+
+        <p class="mb-3">
+          Nuestra aplicación ofrece una interfaz intuitiva y amigable, con funcionalidades completas para mantener actualizados los datos del equipo.
+        </p>
+
+        <p class="mb-4">
+          Explora las secciones de jugadores y partidos para conocer más detalles, registrar nuevos eventos y mantener un historial completo.
+        </p>
+
+        <div class="d-flex justify-content-center gap-3 mt-4">
+          <a href="/players" class="btn btn-outline-primary btn-lg">Ver jugadores</a>
+          <a href="/games" class="btn btn-primary btn-lg">Ver partidos</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {% include 'includes/footer.html' %}
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

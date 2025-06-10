@@ -1,7 +1,9 @@
 id_partido,fecha,fase,rival,puntaje_usa,puntaje_rival,jugador_destacado,puntos,rebotes,asistencias,robos,minutos_jugados,estado,eliminado
-1,2024-07-28,Fase de grupos,Serbia,110,84,LeBron James,20,8,9,2,30,jugado,no
+1,string,string,string,0,0,string,0,0,0,0,0,string,string
 2,2024-07-31,Fase de grupos,Sudán del Sur,103,86,Kevin Durant,25,7,5,1,28,jugado,si
 3,2024-08-03,Fase de grupos,Puerto Rico,104,83,Stephen Curry,22,4,6,3,27,jugado,no
 4,2024-08-06,Cuartos de final,Brasil,122,87,Devin Booker,27,5,4,2,29,jugado,no
 5,2024-08-08,Semifinales,Serbia,95,91,Stephen Curry,30,3,5,4,32,jugado,no
 6,2024-08-10,Final,Francia,98,87,LeBron James,24,10,8,3,35,por_jugar,no
+7,string,string,string,0,0,string,0,0,0,0,0,string,string
+8,2024-07-13,Fase1,a,1,1,a,1,1,1,1,1,por_jugar,no

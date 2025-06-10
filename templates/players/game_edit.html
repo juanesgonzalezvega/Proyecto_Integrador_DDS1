@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Editar Partido</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+  {% include 'includes/navbar.html' %}
+
+  <section class="py-5">
+    <div class="container">
+      <h1 class="text-center mb-4">Editar Partido</h1>
+
+      <form action="/games/{{ partido.id_partido }}/edit" method="post">
+        <div class="card shadow-sm mb-4">
+          <div class="card-body">
+            <div class="mb-3">
+              <label class="form-label">Fecha</label>
+              <input type="date" class="form-control" name="fecha" value="{{ partido.fecha }}" required>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Fase</label>
+              <input type="text" class="form-control" name="fase" value="{{ partido.fase }}" required>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Rival</label>
+              <input type="text" class="form-control" name="rival" value="{{ partido.rival }}" required>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Puntaje USA</label>
+              <input type="number" class="form-control" name="puntaje_usa" value="{{ partido.puntaje_usa }}" required>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Puntaje Rival</label>
+              <input type="number" class="form-control" name="puntaje_rival" value="{{ partido.puntaje_rival }}" required>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Jugador Destacado</label>
+              <input type="text" class="form-control" name="jugador_destacado" value="{{ partido.jugador_destacado }}" required>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Puntos</label>
+              <input type="number" class="form-control" name="puntos" value="{{ partido.puntos }}" required>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Rebotes</label>
+              <input type="number" class="form-control" name="rebotes" value="{{ partido.rebotes }}" required>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Asistencias</label>
+              <input type="number" class="form-control" name="asistencias" value="{{ partido.asistencias }}" required>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Robos</label>
+              <input type="number" class="form-control" name="robos" value="{{ partido.robos }}" required>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Minutos Jugados</label>
+              <input type="number" class="form-control" name="minutos_jugados" value="{{ partido.minutos_jugados }}" required>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Estado</label>
+              <select class="form-select" name="estado" required>
+                <option value="jugado" {% if partido.estado == 'jugado' %}selected{% endif %}>Jugado</option>
+                <option value="por_jugar" {% if partido.estado == 'por_jugar' %}selected{% endif %}>Por Jugar</option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Eliminado</label>
+              <select class="form-select" name="eliminado" required>
+                <option value="no" {% if partido.eliminado == 'no' %}selected{% endif %}>No</option>
+                <option value="si" {% if partido.eliminado == 'si' %}selected{% endif %}>Sí</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-center gap-2">
+          <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+          <a href="/games" class="btn btn-secondary">Cancelar</a>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  {% include 'includes/footer.html' %}
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Partido vs {{ partido.rival }}</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+  {% include 'includes/navbar.html' %}
+
+  <section class="py-5">
+    <div class="container">
+      <h1 class="text-center mb-4">Partido vs {{ partido.rival }}</h1>
+
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <p><strong>Fecha:</strong> {{ partido.fecha }}</p>
+              <p><strong>Fase:</strong> {{ partido.fase }}</p>
+              <p><strong>Estado:</strong> {{ partido.estado }}</p>
+              <p><strong>Eliminado:</strong> {{ partido.eliminado }}</p>
+            </div>
+
+            <div class="col-md-6">
+              <p><strong>Puntaje USA:</strong> {{ partido.puntaje_usa }}</p>
+              <p><strong>Puntaje Rival:</strong> {{ partido.puntaje_rival }}</p>
+              <p><strong>Jugador Destacado:</strong> {{ partido.jugador_destacado }}</p>
+            </div>
+          </div>
+
+          <hr>
+
+          <h5 class="mt-4">Estadísticas del Jugador Destacado</h5>
+          <div class="row mt-3">
+            <div class="col-md-3 col-sm-6 mb-2">
+              <p><strong>Puntos:</strong> {{ partido.puntos }}</p>
+            </div>
+            <div class="col-md-3 col-sm-6 mb-2">
+              <p><strong>Rebotes:</strong> {{ partido.rebotes }}</p>
+            </div>
+            <div class="col-md-3 col-sm-6 mb-2">
+              <p><strong>Asistencias:</strong> {{ partido.asistencias }}</p>
+            </div>
+            <div class="col-md-3 col-sm-6 mb-2">
+              <p><strong>Robos:</strong> {{ partido.robos }}</p>
+            </div>
+            <div class="col-md-3 col-sm-6 mb-2">
+              <p><strong>Minutos Jugados:</strong> {{ partido.minutos_jugados }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-4">
+        <a href="/games" class="btn btn-primary">Volver a la lista de partidos</a>
+      </div>
+    </div>
+  </section>
+
+  {% include 'includes/footer.html' %}
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
