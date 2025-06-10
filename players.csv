@@ -11,7 +11,7 @@ id,nombre,numero,posicion,equipo,altura,edad,estado,eliminado
 10,Kawhi _Leonard,2,Alero,USA,2.01,33,inactivo,no
 11,Bam_Adebayo,13,Pívot,USA,2.06,27,activo,no
 12,Derrick_White,9,Base,USA,1.93,30,activo,no
-13,Jalen_Brown,15,Alero,USA,1.98,28,inactivo,no
+13,Jalen_Brown,15,Alero,USA,1.98,28,inactivo,si
 14,Nikola Jokic,15,Pívot,Serbia,2.11,30,activo,si
 15,Kevin Garnet,5,Ala-Pívot,USA,2.04,42,activo,si
 16,Jalen Brunson,4,Base,USA,1.85,34,activo,si

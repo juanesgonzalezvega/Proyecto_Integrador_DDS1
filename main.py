@@ -2,12 +2,18 @@ from fastapi import FastAPI, Request, HTTPException
 from fastapi.responses import JSONResponse
 from fastapi.templating import Jinja2Templates
 from routers.players import api, web
+from fastapi.staticfiles import StaticFiles
+
+
+
 
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
 
 app.include_router(api.router, prefix="/api", tags=["API"])
 app.include_router(web.router, prefix="", tags=["Web"])
+
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
 @app.get("/")
 async def root(request: Request):
